@@ -16,6 +16,8 @@ servers:
   - url: 'http://localhost:50000'
   - url: 'http://sappot101.wwz.local:50000'
     description: ''
+tags:
+  - name: API
 paths:
   /RESTAdapter/Web/AvailabilityCheck:
     post:
@@ -26,6 +28,7 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/Place'
+        description: The request body contains the data to identify a place.
       responses:
         '200':
           description: OK
@@ -33,6 +36,9 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/AvailabilityStatus'
+      description: Get the Availability Information for a Place.
+      tags:
+        - API
 components:
   schemas:
     Place:
