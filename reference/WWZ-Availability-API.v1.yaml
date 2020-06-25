@@ -13,7 +13,6 @@ info:
     Unavailable: https://notch-interactive.invisionapp.com/share/XQWAOCVVM9R#/screens/414949964_M020_Verfu-gbarkeitsgebiet_-_Desktop_-_Nicht_Verfu-gbar
     Unknown: https://notch-interactive.invisionapp.com/share/XQWAOCVVM9R#/screens/414949966_M020_Verfu-gbarkeitsgebiet_-_Desktop_-_Unbekannt
 servers:
-  - url: 'http://localhost:50000'
   - url: 'http://sappot101.wwz.local:50000'
     description: ''
 tags:
@@ -28,6 +27,35 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/Place'
+            examples:
+              example-1:
+                value:
+                  Strasse: Albisstrasse
+                  Hausnummer: '20'
+                  PLZ: '6340'
+                  Ort: Baar
+                  Land: CH
+              example-2:
+                value:
+                  Strasse: Teststrasse
+                  Hausnummer: '20'
+                  PLZ: '6340'
+                  Ort: Baar
+                  Land: CH
+              example-3:
+                value:
+                  Strasse: Peterweg
+                  Hausnummer: '7'
+                  PLZ: '3018'
+                  Ort: Bern
+                  Land: CH
+              example-4:
+                value:
+                  Strasse: ''
+                  Hausnummer: ''
+                  PLZ: '6340'
+                  Ort: Baar
+                  Land: CH
         description: The request body contains the data to identify a place.
       responses:
         '200':
@@ -36,6 +64,101 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/AvailabilityStatus'
+              examples:
+                example-1:
+                  value:
+                    Objekt:
+                      - Sparte: '02'
+                        Hausanschluss: 70000106
+                        Objektart: G_HA
+                        Status: E0004
+                      - Sparte: '01'
+                        Hausanschluss: 70009045
+                        Objektart: E_HA
+                        Status: E0004
+                      - Sparte: ''
+                        Hausanschluss: 70000019
+                        Objektart: T_HA
+                        Status: E0004
+                    Nachricht:
+                      Code: '00'
+                      Typ: S
+                example-2:
+                  value:
+                    Nachricht:
+                      Code: '02'
+                      Typ: E
+                example-3:
+                  value:
+                    Objekt:
+                      - Sparte: '01'
+                        Hausanschluss: 70029794
+                        Objektart: E_HA
+                        Status: E0002
+                      - Sparte: '08'
+                        Hausanschluss: 70029799
+                        Objektart: T_HA_KOAX
+                        Status: E0004
+                      - Sparte: '08'
+                        Hausanschluss: 70029800
+                        Objektart: T_HA_KOAX
+                        Status: E0002
+                      - Sparte: '08'
+                        Hausanschluss: 70029801
+                        Objektart: T_HA_KOAX
+                        Status: E0002
+                      - Sparte: '08'
+                        Hausanschluss: 70029802
+                        Objektart: T_HA_KOAX
+                        Status: E0004
+                      - Sparte: '08'
+                        Hausanschluss: 70029803
+                        Objektart: T_HA_KOAX
+                        Status: E0002
+                      - Sparte: '08'
+                        Hausanschluss: 70029804
+                        Objektart: T_HA_KOAX
+                        Status: E0002
+                      - Sparte: '08'
+                        Hausanschluss: 70029805
+                        Objektart: T_HA_KOAX
+                        Status: E0002
+                      - Sparte: '01'
+                        Hausanschluss: 70029806
+                        Objektart: E_HA
+                        Status: E0002
+                      - Sparte: '01'
+                        Hausanschluss: 70029807
+                        Objektart: E_HA
+                        Status: E0002
+                      - Sparte: '01'
+                        Hausanschluss: 70029808
+                        Objektart: E_HA
+                        Status: E0002
+                      - Sparte: '01'
+                        Hausanschluss: 70029809
+                        Objektart: E_HA
+                        Status: E0002
+                      - Sparte: '01'
+                        Hausanschluss: 70029810
+                        Objektart: E_HA
+                        Status: E0002
+                      - Sparte: '01'
+                        Hausanschluss: 70029811
+                        Objektart: E_HA
+                        Status: E0002
+                      - Sparte: '02'
+                        Hausanschluss: 70029814
+                        Objektart: G_HA
+                        Status: E0002
+                    Nachricht:
+                      Code: '00'
+                      Typ: S
+                example-4:
+                  value:
+                    Nachricht:
+                      Code: '01'
+                      Typ: E
       description: Get the Availability Information for a Place.
       tags:
         - API
@@ -67,9 +190,13 @@ components:
       type: object
       properties:
         Objekt:
-          $ref: '#/components/schemas/PlaceDetail'
+          type: array
+          items:
+            $ref: '#/components/schemas/PlaceDetail'
         Nachricht:
           $ref: '#/components/schemas/Message'
+      required:
+        - Nachricht
     PlaceDetail:
       title: PlaceDetail
       type: object
@@ -77,23 +204,267 @@ components:
         Sparte:
           type: string
           example: '02'
+          enum:
+            - '00'
+            - '01'
+            - '02'
+            - '03'
+            - '04'
+            - '05'
+            - '06'
+            - '07'
+            - '08'
+            - '09'
+            - '10'
+            - '11'
+            - '12'
+            - '13'
+            - '14'
+            - '15'
+            - '16'
+            - '17'
+            - '20'
+            - '21'
+            - '31'
+            - '32'
+            - '33'
+            - '40'
+            - '41'
+            - '52'
+            - '43'
+            - '44'
+            - '45'
+            - '46'
+            - '47'
+            - '48'
+            - '49'
+            - '50'
+            - '51'
+            - '52'
+            - '60'
+            - '61'
+            - '62'
+            - '63'
+            - '64'
+            - '80'
+            - '81'
+            - '82'
+            - '83'
+            - '84'
+            - '85'
+            - '86'
+            - '87'
+            - '88'
+            - '91'
+            - '92'
+            - '93'
+            - '94'
+            - '95'
+            - '96'
+            - Z1
+            - Z2
+            - Z3
+            - Z4
+            - Z5
+            - Z6
+            - Z7
+            - Z8
+          description: "00\tAllgemein\t\n01\tElektrizität\n02\tErdgas\n03\tWasser\n04\tAbwasser\t\n05\tWärmeabgabe\n06\tDigitalfernsehen\n07\tInternet\t\n08\tDigitalanschluss\n09\tTeleclub\t\n10\tAbfallentsorgung\t\n11\tÜbr Erträge Wasser\t\n12\tAnschl.Beitr/Sub.\t\n13\tTelefonie Festnetz\t\n14\tDatendienste\t\n15\tProfessional Service\t\n16\tBündelpakete Telekom\t\n17\tTelefonie Mobile\t\n"
         Hausanschluss:
-          type: string
-          example: '70000106'
+          type: number
+          example: 70029794
         Objektart:
           type: string
           example: G_HA
+          enum:
+            - EEA_BMKW
+            - EEA_NSG
+            - EEA_BSTZ
+            - EEA_PVA
+            - EEA_WAKW
+            - EEA_WIKW
+            - EEA_WKK
+            - ER_HA
+            - ES_HA
+            - E_HA
+            - E_HA_EXT
+            - E_NF OB-TW
+            - E_NF-TW
+            - E_NO
+            - E_NO_MAST
+            - E_NO_TBA
+            - E_NO_TRAFO
+            - E_NO_UW
+            - E_NO_VK
+            - E_OB-TW
+            - E_OBF-TW
+            - G_HA
+            - G_HIK_01
+            - G_HIK_01_D
+            - G_HIK_02
+            - G_HIK_02_D
+            - G_HIK_03
+            - G_HIK_03_D
+            - G_HIK_04
+            - G_HIK_04_D
+            - G_HIK_05
+            - G_HIK_05_D
+            - G_HIK_06
+            - G_HIK_06_D
+            - G_HIK_07
+            - G_HIK_07_D
+            - G_HIK_08
+            - G_HIK_08_D
+            - G_HIK_09
+            - G_HIK_09_D
+            - G_HIK_10
+            - G_HIK_10_D
+            - G_HIK_11
+            - G_HIK_11_D
+            - G_HIK_12
+            - G_HIK_12_D
+            - G_HIK_13
+            - G_HIK_13_D
+            - G_HIK_14
+            - G_HIK_14_D
+            - G_HIK_15
+            - G_HIK_15_D
+            - G_HIK_20
+            - G_HIK_20_D
+            - G_NO
+            - G_VBST_K
+            - H_HA
+            - O-010
+            - O-020
+            - O-030
+            - O-040
+            - O-050
+            - O-060
+            - QK_HA
+            - QW_HA
+            - Q_HIK_01
+            - Q_HIK_02
+            - Q_HIK_03
+            - Q_HIK_04
+            - Q_HIK_05
+            - Q_HIK_06
+            - Q_HIK_07
+            - Q_HIK_08
+            - Q_HIK_09
+            - Q_HIK_10
+            - Q_HIK_11
+            - Q_HIK_12
+            - Q_HIK_13
+            - Q_HIK_14
+            - Q_HIK_15
+            - Q_HIK_20
+            - Q_NO
+            - T_FIBER
+            - T_HA_BURON
+            - T_HA_FTTB
+            - T_HA_FTTH
+            - T_HA_FTTH1
+            - T_HA_KOAX
+            - T_HA_LWL1
+            - T_HA_LWL2
+            - T_HA_LWL_D
+            - T_HA_RENET
+            - T_NODE
+            - T_NO_AMP
+            - T_NO_F-SPL
+            - T_NO_MUFFE
+            - T_NO_NODE
+            - T_NO_PAS
+            - T_NO_POP
+            - T_VK
+            - W_HA
+            - W_HIK999_D
+            - W_HIK999_I
+            - W_HIK_01_D
+            - W_HIK_01_I
+            - W_HIK_02_D
+            - W_HIK_02_I
+            - W_HIK_03_D
+            - W_HIK_03_I
+            - W_HIK_04_D
+            - W_HIK_04_I
+            - W_HIK_05_D
+            - W_HIK_05_I
+            - W_HIK_06_D
+            - W_HIK_06_I
+            - W_HIK_07_D
+            - W_HIK_07_I
+            - W_HIK_08_D
+            - W_HIK_09_D
+            - W_HIK_09_I
+            - W_HIK_10_D
+            - W_HIK_10_I
+            - W_HIK_11_D
+            - W_HIK_11_I
+            - W_HIK_12_D
+            - W_HIK_12_I
+            - W_HIK_13_D
+            - W_HIK_13_I
+            - W_HIK_14_D
+            - W_HIK_14_I
+            - W_HIK_15_D
+            - W_HIK_15_I
+            - W_HIK_16_D
+            - W_HIK_16_I
+            - W_HIK_17_D
+            - W_HIK_17_I
+            - W_HIK_18_D
+            - W_HIK_18_I
+            - W_HIK_18_I
+            - W_HIK_19_D
+            - W_HIK_19_I
+            - W_HIK_20_D
+            - W_HIK_20_I
+            - W_HIK_999
+            - W_NO
+            - ZHIK_E
+          description: "ER_HA\tE-HA Rücklieferung\nES_HA\tE-HA Sicherheitsnetz\nE_HA\tHausanschluss Elektr\nE_HA_EXT\tHA E Standort extern\nG_HA\tHausanschluss Gas\nQK_HA\tHausanschluss Kälte\nQW_HA\tHausanschluss Wärme\nT_FIBER\tFiber aktiv\nT_HA_BURON\tHA Büron\nT_HA_FTTB\tHA LWL FTTB\nT_HA_FTTH\tHA LWL FTTH PON\nT_HA_FTTH1\tHA LWL FTTH RFOG\nT_HA_KOAX\tHA KOAX\nT_HA_LWL1\tHA LWL Business 1\nT_HA_LWL2\tHA LWL Business 2\nT_HA_LWL_D\tHA LWL Dritte\nT_HA_RENET\tHA Renet\nT_HA_SASAG\tHA SASAG\nW_HA\tHausanschluss Wasser\nZHIK_E\tHIK Elektro\n"
         Status:
           type: string
-          example: I0100
+          example: E0001
+          description: |-
+            |-----|----------------------------------------|
+            |Status| Beschreibung      | Abkürzung         |
+            |------|-------------------|-------------------|
+            |E0001 |abgebrochen        |DEM                |
+            |E0002 |angelegt           |ANLE               |
+            |E0003 |ausser Betrieb     |AUBE               |
+            |E0004 |in Betrieb         |INBE               |
+            |------|---------------------------------------|
+          enum:
+            - E0001
+            - E0002
+            - E0003
+            - E0004
+      required:
+        - Sparte
+        - Hausanschluss
+        - Objektart
     Message:
       title: Message
       type: object
+      description: ''
       properties:
-        Text:
+        Code:
           type: string
-          example: Hausanschluss gefunden.
+          example: '00'
+          enum:
+            - '00'
+            - '01'
+            - '02'
+          description: "|-----|----------------------------------------|\n|Code | Beschreibung                           |\n|-----|----------------------------------------|\n|   00| Hausanschluss gefunden.                |\n|   01| Nicht alle Muss-Felder ausgefüllt.     |\n|   02| Hausanschluss konnte nicht gefunden werden.                                         \n |\n|-----|----------------------------------------|"
         Typ:
           type: string
           example: S
+          enum:
+            - S
+            - E
+      required:
+        - Code
+        - Typ
   securitySchemes: {}
