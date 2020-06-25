@@ -5,12 +5,15 @@ info:
   contact:
     name: Raphael Ochsenbein
     email: ro@viu.ch
-  description: |-
+  description: |
     Get the availability of a specific place.
+
 
     Designs
     Available: https://notch-interactive.invisionapp.com/share/XQWAOCVVM9R#/screens/414949963_M020_Verfu-gbarkeitsgebiet_-_Desktop_-_Verfu-gbar
+
     Unavailable: https://notch-interactive.invisionapp.com/share/XQWAOCVVM9R#/screens/414949964_M020_Verfu-gbarkeitsgebiet_-_Desktop_-_Nicht_Verfu-gbar
+
     Unknown: https://notch-interactive.invisionapp.com/share/XQWAOCVVM9R#/screens/414949966_M020_Verfu-gbarkeitsgebiet_-_Desktop_-_Unbekannt
 servers:
   - url: 'http://sappot101.wwz.local:50000'
